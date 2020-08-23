@@ -25,6 +25,12 @@ Surface& Surface::operator=(const Surface& rhs)
 Surface::~Surface()
 {
 	delete[] pPixels;
+	pPixels = nullptr;
+}
+
+void Surface::PutPixel(const int x, const int y, const Color& c)
+{
+	pPixels[x + width * y] = c;
 }
 
 int Surface::Width() const
@@ -37,7 +43,7 @@ int Surface::Height() const
 	return height;
 }
 
-Color* Surface::PPixels()
+Color Surface::GetPixel(const int x, const int y) const
 {
-	return pPixels;
+	return pPixels[x + width * y];
 }

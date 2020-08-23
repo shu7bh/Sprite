@@ -14,10 +14,13 @@ public:
 	// Destructor
 	~Surface();
 
+	// Modifier
+	void PutPixel(const int x, const int y, const Color& c);
+
 	// Getters
 	int Width() const;
 	int Height() const;
-	Color* PPixels();
+	Color GetPixel(const int x, const int y) const;
 private:
 	int width;
 	int height;
