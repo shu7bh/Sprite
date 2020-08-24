@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	surface(L"XING_B24.BMP") {}
+	surface(L"marle32x48.BMP") {}
 
 void Game::Go()
 {
@@ -41,5 +41,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	gfx.DrawSprite(50, 50, surface);
+	gfx.DrawSprite(wnd.mouse.GetPos(), { 64, 96, 96, 144 }, gfx.getRect(), surface);
 }

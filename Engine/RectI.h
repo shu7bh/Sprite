@@ -14,6 +14,8 @@ public:
 	static RectI FromCenter( const Vec2& center,int halfWidth,int halfHeight );
 	RectI GetExpanded( int offset ) const;
 	Vec2 GetCenter() const;
+	int Width() const;
+	int Height() const;
 public:
 	int left;
 	int right;

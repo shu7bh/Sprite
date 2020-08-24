@@ -48,3 +48,13 @@ Vec2 RectI::GetCenter() const
 {
 	return Vec2( (left + right) / 2,(top + bottom) / 2 );
 }
+
+int RectI::Width() const
+{
+	return right - left;
+}
+
+int RectI::Height() const
+{
+	return bottom - top;
+}
