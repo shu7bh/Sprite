@@ -1,4 +1,5 @@
 #include "Surface.h"
+#include <cassert>
 
 Surface::Surface(const int width, const int height)
 	: width(width), height(height), pPixels(new Color[size_t(width) * height]) {}
@@ -30,6 +31,11 @@ Surface::~Surface()
 
 void Surface::PutPixel(const int x, const int y, const Color& c)
 {
+	assert(x >= 0);
+	assert(y >= 0);
+	assert(x < width);
+	assert(y < height);
+
 	pPixels[x + width * y] = c;
 }
 
@@ -45,5 +51,10 @@ int Surface::Height() const
 
 Color Surface::GetPixel(const int x, const int y) const
 {
+	assert(x >= 0);
+	assert(y >= 0);
+	assert(x < width);
+	assert(y < height);
+
 	return pPixels[x + width * y];
 }

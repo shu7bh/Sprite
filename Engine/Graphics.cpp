@@ -25,6 +25,7 @@
 #include <assert.h>
 #include <string>
 #include <array>
+#include "Surface.h"
 
 // Ignore the intellisense error "cannot open source file" for .shh files.
 // They will be created during the build sequence before the preprocessor runs.
@@ -314,6 +315,13 @@ void Graphics::PutPixel( int x,int y,Color c )
 	assert( y >= 0 );
 	assert( y < int( Graphics::ScreenHeight ) );
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
+}
+
+void Graphics::DrawSprite(const int x, const int y, const Surface& s)
+{
+	for (int i = x; i < x + s.Width(); ++i)
+		for (int j = y; j < y + s.Height(); ++j)
+			PutPixel(i, j, s.GetPixel(i - x, j - y));
 }
 
 
