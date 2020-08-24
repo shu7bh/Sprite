@@ -2,6 +2,7 @@
 #include "Colors.h"
 #include "ChiliWin.h"
 #include <string>
+#include "RectI.h"
 
 class Surface
 {
@@ -24,6 +25,8 @@ public:
 	int Width() const;
 	int Height() const;
 	Color GetPixel(const int x, const int y) const;
+	RectI GetRect() const;
+
 private:
 	int width;
 	int height;

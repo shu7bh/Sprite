@@ -41,5 +41,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	gfx.DrawSprite(wnd.mouse.GetPos(), { 64, 96, 96, 144 }, gfx.getRect(), surface);
+	gfx.DrawSprite(wnd.mouse.GetPos(), { 64, 96, 96, 144 }, gfx.getRect(), surface, Colors::Magenta);
 }

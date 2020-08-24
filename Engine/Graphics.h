@@ -58,11 +58,19 @@ public:
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
-	void DrawSprite(const int x, const int y, const class Surface& s);
-	void DrawSprite(const int x, const int y, const RectI& rect, const class Surface& s);
-	void DrawSprite(int x, int y, RectI srcRect, const RectI& clipRect, const class Surface& s);
-	void DrawSprite(const Vec2& pos, const RectI& rect, const class Surface& s);
-	void DrawSprite(Vec2 pos, RectI srcRect, const RectI& clipRect, const class Surface& s);
+
+
+	void DrawSprite(const int x, const int y, const class Surface& s, const Color chroma);
+	void DrawSprite(const int x, const int y, const RectI& rect, const class Surface& s, const Color chroma);
+	void DrawSprite(int x, int y, RectI srcRect, const RectI& clipRect, const class Surface& s, const Color chroma);
+	void DrawSprite(const Vec2& pos, const RectI& rect, const class Surface& s, const Color chroma);
+	void DrawSprite(Vec2 pos, RectI srcRect, const RectI& clipRect, const class Surface& s, const Color chroma);
+
+	void DrawSpriteNonChroma(Vec2 pos, RectI srcRect, const RectI& clipRect, const class Surface& s);
+	void DrawSpriteNonChroma(const int x, const int y, const class Surface& s);
+	void DrawSpriteNonChroma(const int x, const int y, const RectI& rect, const class Surface& s);
+	void DrawSpriteNonChroma(int x, int y, RectI srcRect, const RectI& clipRect, const class Surface& s);
+	void DrawSpriteNonChroma(const Vec2& pos, const RectI& rect, const class Surface& s);
 
 	static const RectI getRect();
 	~Graphics();
