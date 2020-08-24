@@ -1,5 +1,7 @@
 #include "Surface.h"
 #include <cassert>
+#include <fstream>
+#include "Graphics.h"
 
 Surface::Surface(const int width, const int height)
 	: width(width), height(height), pPixels(new Color[size_t(width) * height]) {}
@@ -9,6 +11,37 @@ Surface::Surface(const Surface& rhs)
 {
 	for (int i = 0; i < width * height; ++i)
 		pPixels[i] = rhs.pPixels[i];
+}
+
+Surface::Surface(const std::wstring fileName)
+{
+	std::ifstream fin(fileName, std::ios::binary);
+	BITMAPFILEHEADER bmFileHeader;
+	fin.read(reinterpret_cast<char*>(&bmFileHeader), sizeof(bmFileHeader));
+
+	BITMAPINFOHEADER bmInfoHeader;
+	fin.read(reinterpret_cast<char*>(&bmInfoHeader), sizeof(bmInfoHeader));
+	
+	assert(bmInfoHeader.biBitCount == 24);
+	assert(bmInfoHeader.biCompression == BI_RGB);
+	assert(bmInfoHeader.biWidth < Graphics::ScreenWidth);
+	assert(bmInfoHeader.biHeight < Graphics::ScreenHeight);
+
+	width = bmInfoHeader.biWidth;
+	height = bmInfoHeader.biHeight;
+
+	pPixels = new Color[width * height];
+	
+	fin.seekg(bmFileHeader.bfOffBits);
+	 
+	const int padding = (4 - (width * 3) % 4) % 4;
+
+	for (int j = height - 1; j >= 0; --j)
+	{
+		for (int i = 0; i < width; ++i)
+			PutPixel(i, j, Color(fin.get(), fin.get(), fin.get()));
+		fin.seekg(padding, std::ios::cur);
+	}
 }
 
 Surface& Surface::operator=(const Surface& rhs)

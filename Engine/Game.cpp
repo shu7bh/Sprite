@@ -25,12 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	surface(500, 500)
-{
-	for (int i = 0; i < surface.Width(); ++i)
-		for (int j = 0; j < surface.Height(); ++j)
-			surface.PutPixel(i, j, ((255 - i) * (255 - i) + (255 - j) * (255 - j)) % 255);
-}
+	surface(L"XING_B24.BMP") {}
 
 void Game::Go()
 {

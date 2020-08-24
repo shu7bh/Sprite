@@ -1,5 +1,7 @@
 #pragma once
 #include "Colors.h"
+#include "ChiliWin.h"
+#include <string>
 
 class Surface
 {
@@ -7,6 +9,7 @@ public:
 	// Constructors
 	Surface(const int width, const int height);
 	Surface(const Surface& rhs);
+	Surface(const std::wstring fileName);
 
 	// Assignment operator
 	Surface& operator=(const Surface& rhs);
